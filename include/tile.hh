@@ -8,11 +8,11 @@ namespace atg
     class Tile
     {
         private:
-            int id;
-            std::string name;
-            std::string asset;
-            int x;
-            int y;
+            int _id;
+            std::string _name;
+            std::string _asset;
+            int _x;
+            int _y;
 
         public:
             Tile(int id, int x, int y);

@@ -9,6 +9,7 @@ Map::Map(std::string name, int col, int row, int twidth, int theight)
     rows = row;
     tile_width = twidth;
     tile_height = theight;
+    calcTiles();
 }
 
 std::string Map::getName()
