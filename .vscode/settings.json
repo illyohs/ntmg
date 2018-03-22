@@ -1,0 +1,18 @@
+{
+    "files.associations": {
+        "string": "cpp",
+        "typeinfo": "cpp",
+        "qstring": "cpp",
+        "array": "cpp",
+        "initializer_list": "cpp",
+        "string_view": "cpp",
+        "utility": "cpp",
+        "__split_buffer": "cpp",
+        "__tree": "cpp",
+        "iterator": "cpp",
+        "list": "cpp",
+        "map": "cpp",
+        "vector": "cpp",
+        "iostream": "cpp"
+    }
+}
