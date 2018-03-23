@@ -5,9 +5,9 @@ using namespace atg;
 
 Tile::Tile(int id, int x, int y)
 {
-    id = id;
-    x = x;
-    y = y;
+    _id = id;
+    _x = x;
+    _y = y;
 }
 
 Tile::~Tile()
@@ -17,31 +17,31 @@ Tile::~Tile()
 
 std::string Tile::getName()
 {
-    return name;
+    return _name;
 }
 
 void Tile::setName(std::string name)
 {
-    name = name;
+    _name = name;
 }
 
 
 std::string Tile::getAsset()
 {
-    return asset;
+    return _asset;
 }
 
 void Tile::setAsset(std::string asset)
 {
-    asset = asset;
+    _asset = asset;
 }
 
 int Tile::getX()
 {
-    return x;
+    return _x;
 }
 
 int Tile::getY()
 {
-    return y;
+    return _y;
 }
