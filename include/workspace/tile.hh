@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-namespace atg
+namespace ntmg
 {
     class Tile
     {

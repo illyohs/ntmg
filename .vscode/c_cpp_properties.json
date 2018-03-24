@@ -34,7 +34,9 @@
                 "/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.1/include-fixed",
                 "/usr/include",
                 "${workspaceRoot}",
-                "${workspaceRoot}/include"
+                "${workspaceRoot}/include",
+                "${workspaceRoot}/imgui",
+                "/usr/include/SDL2"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",

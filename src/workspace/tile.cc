@@ -1,6 +1,6 @@
-#include <tile.hh>
+#include <workspace/tile.hh>
 
-using namespace atg;
+using namespace ntmg;
 
 
 Tile::Tile(int id, int x, int y)

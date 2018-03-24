@@ -1,16 +1,21 @@
-#include <map.hh>
-#include <iostream>
+#include <gui/mainwindow.hh>
 
-using namespace atg;
+using namespace ntmg::gui;
+
 int main()
 {
-    // Map map = Map("foo", 10, 10, 32, 32);
-    // std::cout << map.getName() << std::endl;
 
-    // std::vector<Tile> tiles = map.getTiles();
-    // for (int i = 0; i < map.getTiles().size(); i++)
-    // {
-    //     std::cout << tiles.at(i).getX() << " : " << tiles.at(i).getY() << std::endl;
-    // }
-    // return 0;
+    MainGui *mg = nullptr;
+    mg = new MainGui();
+
+    mg->init("Native Tile Map Generator", 1280, 720);
+    while(mg->isRunning())
+    {
+        mg->render();
+        mg->update();
+        mg->eventHandle();
+    }
+
+    mg->clean();
+    return 0;
 }

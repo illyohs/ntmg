@@ -1,63 +1,63 @@
-#include <map.hh>
+#include <workspace/map.hh>
 
-using namespace atg;
+using namespace ntmg;
 
 Map::Map(std::string name, int col, int row, int twidth, int theight)
 {
-    mapName = name;
-    column = col;
-    rows = row;
-    tile_width = twidth;
-    tile_height = theight;
+    _mapName = name;
+    _column = col;
+    _rows = row;
+    _tile_width = twidth;
+    _tile_height = theight;
     calcTiles();
 }
 
 std::string Map::getName()
 {
-    return mapName;
+    return _mapName;
 }
 
 int Map::getColumns()
 {
-    return column;
+    return _column;
 }
 
 void Map::setColumns(int cols)
 {
-    column = cols;
+    _column = cols;
 }
 
 int Map::getRow()
 {
-    return rows;
+    return _rows;
 }
 
 void Map::setRows(int rows)
 {
-    rows = rows;
+    _rows = rows;
 }
 
 int Map::getTileHeight()
 {
-    return tile_height;
+    return _tile_height;
 }
 
 void Map::setTileHeight(int th)
 {
-    tile_height = th;
+    _tile_height = th;
 }
 
 int Map::getTileWidth()
 {
-    return tile_width;
+    return _tile_width;
 }
 
 void Map::setTileWidth(int width)
 {
-    tile_width = width;
+    _tile_width = width;
 }
 
 std::vector<Tile> Map::getTiles()
 {
-    return tiles;
+    return _tiles;
 }

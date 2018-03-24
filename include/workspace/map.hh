@@ -5,30 +5,30 @@
 
 #include "tile.hh"
 
-namespace atg
+namespace ntmg
 {
     class Map
     {
         private:
-            std::string mapName;
-            int column;
-            int rows;
-            int tile_width;
-            int tile_height;
-            std::vector<Tile> tiles;
+            std::string _mapName;
+            int _column;
+            int _rows;
+            int _tile_width;
+            int _tile_height;
+            std::vector<Tile> _tiles;
             void calcTiles()
             {
-                if (!tiles.empty())
+                if (!_tiles.empty())
                 {
-                    tiles.clear();
+                    _tiles.clear();
                 }
 
-                for (int c = 0; c <= column; c++)
+                for (int c = 0; c <= _column; c++)
                 {
-                    for (int r = 0; r <= rows; r++)
+                    for (int r = 0; r <= _rows; r++)
                     {
-                        Tile tile = Tile(tiles.size(), r, c);
-                        tiles.push_back(tile);
+                        Tile tile = Tile(_tiles.size(), r, c);
+                        _tiles.push_back(tile);
                     }
                 }
             }
