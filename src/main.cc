@@ -1,16 +1,25 @@
-#include <map.hh>
+#include <workspace/map.hh>
+#include <ui/twindow.hh>
 #include <iostream>
 
-using namespace atg;
+// using namespace ntmg;
+using namespace ntmg::ui;
+
 int main()
 {
-    Map map = Map("foo", 9, 9, 32, 32);
-    std::cout << map.getName() << std::endl;
+    Twindow *tw = nullptr;
 
-    std::vector<Tile> tiles = map.getTiles();
-    for (int i = 0; i < map.getTiles().size(); i++)
+    tw = new Twindow();
+
+    tw->init("stmg", 480, 800);
+
+    while(tw->isRunning())
     {
-        std::cout << tiles.at(i).getX() << " : " << tiles.at(i).getY() << std::endl;
+        tw->eventHandle();
+        tw->update();
+        tw->render();
     }
+
+    tw->clean();
     return 0;
 }

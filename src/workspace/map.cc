@@ -1,6 +1,6 @@
-#include <map.hh>
+#include <workspace/map.hh>
 
-using namespace atg;
+using namespace ntmg;
 
 Map::Map(std::string name, int col, int row, int twidth, int theight)
 {

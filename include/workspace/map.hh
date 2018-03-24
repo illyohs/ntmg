@@ -5,7 +5,7 @@
 
 #include "tile.hh"
 
-namespace atg
+namespace ntmg
 {
     class Map
     {

@@ -13,6 +13,9 @@
         "list": "cpp",
         "map": "cpp",
         "vector": "cpp",
-        "iostream": "cpp"
-    }
+        "iostream": "cpp",
+        "__functional_03": "cpp",
+        "functional": "cpp",
+        "memory": "cpp"
+    },
 }
