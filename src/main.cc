@@ -1,25 +1,21 @@
-#include <workspace/map.hh>
-#include <ui/twindow.hh>
-#include <iostream>
+#include <gui/mainwindow.hh>
 
-// using namespace ntmg;
-using namespace ntmg::ui;
+using namespace ntmg::gui;
 
 int main()
 {
-    Twindow *tw = nullptr;
 
-    tw = new Twindow();
+    MainGui *mg = nullptr;
+    mg = new ntmg::gui::MainGui();
 
-    tw->init("stmg", 480, 800);
-
-    while(tw->isRunning())
+    mg->init("Native Tile Map Generator", 1280, 720);
+    while(mg->isRunning())
     {
-        tw->eventHandle();
-        tw->update();
-        tw->render();
+        mg->render();
+        mg->update();
+        mg->eventHandle();
     }
 
-    tw->clean();
+    mg->clean();
     return 0;
 }

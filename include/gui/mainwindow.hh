@@ -1,21 +1,25 @@
 #pragma once
 
-#include <string>
+#include <GL/glew.h>
 #include <SDL.h>
+#include <SDL_opengl.h>
 
-namespace ntmg::ui
+#include <string>
+
+#include <imgui.h>
+#include <imgui_impl_sdl_gl3.h>
+
+namespace ntmg::gui
 {
-    class Twindow
+    class MainGui
     {
         private:
             bool _running;
             SDL_Window *window;
-            SDL_Renderer *renderer;
 
         public:
-            Twindow();
-            ~Twindow();
-
+            MainGui();
+            ~MainGui();
             void init(std::string name, int height, int weidth);
             void eventHandle();
             void update();

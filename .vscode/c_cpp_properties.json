@@ -35,6 +35,7 @@
                 "/usr/include",
                 "${workspaceRoot}",
                 "${workspaceRoot}/include",
+                "${workspaceRoot}/imgui",
                 "/usr/include/SDL2"
             ],
             "defines": [],
