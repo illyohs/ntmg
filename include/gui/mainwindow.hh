@@ -1,21 +1,21 @@
 #pragma once
 
 #include <GL/glew.h>
-#include <SDL.h>
-#include <SDL_opengl.h>
+#include <GLFW/glfw3.h>
 
 #include <string>
 
 #include <imgui.h>
-#include <imgui_impl_sdl_gl3.h>
+#include <imgui_impl_glfw_gl3.h>
 
 namespace ntmg::gui
 {
     class MainGui
     {
         private:
+            GLFWwindow *window;
             bool _running;
-            SDL_Window *window;
+            ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
         public:
             MainGui();

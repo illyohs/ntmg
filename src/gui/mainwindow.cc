@@ -1,10 +1,15 @@
 #include <gui/mainwindow.hh>
+#include <gui/guiworkspace.hh>
+#include <stdio.h>
 
 #include <iostream>
-#include <stdio.h>
 
 using namespace ntmg::gui;
 
+static void glfw_error_callback(int error, const char* description)
+{
+    fprintf(stderr, "Error %d: %s\n", error, description);
+}
 
 MainGui::MainGui()
 {
@@ -16,77 +21,69 @@ MainGui::~MainGui()
 
 void MainGui::init(std::string name, int width, int height)
 {
-    if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
+    if (!glfwInit())
     {
 
-        SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG);
-        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-        SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-        SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-        SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
-        SDL_DisplayMode current;
-        SDL_GetCurrentDisplayMode(0, &current);
-        window = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE);
-        SDL_GLContext gl_context = SDL_GL_CreateContext(window);
-	    SDL_GL_SetSwapInterval(1); // Enable vsync
-    	glewInit();
-
-        ImGui::CreateContext();
-        ImGuiIO& io = ImGui::GetIO(); (void)io;
-
-        ImGui_ImplSdlGL3_Init(window);
-        ImGui::StyleColorsDark();
-        _running = true;
-
+        printf("Error: ");
+        _running = false;
     }
     else
     {
-        printf("Error: %s\n", SDL_GetError());
-        _running = false;
+
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+#if __APPLE__
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
+        window = glfwCreateWindow(width, height, name.c_str(), NULL, NULL);
+        glfwMakeContextCurrent(window);
+        glfwSwapInterval(1); // Enable vsync
+        glewInit();
+        _running = true;
     }
 
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
+    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
+    ImGui_ImplGlfwGL3_Init(window, true);
 
+    // Setup style
+    ImGui::StyleColorsDark();
 }
 
 void MainGui::eventHandle()
 {
-    SDL_Event event;
-    // SDL_PollEvent(&event);
-    ImGui_ImplSdlGL3_ProcessEvent(&event);
-    switch(event.type) {
-        case SDL_QUIT:
-            _running = false;
-            break;
-        default:
-            break;
-    }
+
 }
 
 void MainGui::update()
 {
-
 }
 
 void MainGui::render()
 {
-    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+    glfwPollEvents();
+    ImGui_ImplGlfwGL3_NewFrame();
 
+    GuiWorkspace();
 
-    glViewport(0, 0, (int)ImGui::GetIO().DisplaySize.x, (int)ImGui::GetIO().DisplaySize.y);
+    int display_w, display_h;
+    glfwGetFramebufferSize(window, &display_w, &display_h);
+    glViewport(0, 0, display_w, display_h);
     glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
     glClear(GL_COLOR_BUFFER_BIT);
     ImGui::Render();
-    ImGui_ImplSdlGL3_RenderDrawData(ImGui::GetDrawData());
-    SDL_GL_SwapWindow(window);
+    ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
+    glfwSwapBuffers(window);
 }
 
 void MainGui::clean()
 {
-    ImGui_ImplSdlGL3_Shutdown();
+    // Cleanup
+    ImGui_ImplGlfwGL3_Shutdown();
     ImGui::DestroyContext();
-    SDL_DestroyWindow(window);
-    SDL_Quit();
+    glfwTerminate();
     std::cout << "Quiting sdl" << std::endl;
 }
