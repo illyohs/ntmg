@@ -41,16 +41,22 @@ void MainGui::init(std::string name, int width, int height)
         glfwSwapInterval(1); // Enable vsync
         glewInit();
         _running = true;
+
+        while(!glfwWindowShouldClose(window))
+        {
+
+
+            ImGui::CreateContext();
+            ImGuiIO& io = ImGui::GetIO(); (void)io;
+            //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
+            //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
+            ImGui_ImplGlfwGL3_Init(window, true);
+
+            // Setup style
+            ImGui::StyleColorsDark();
+            render();
+        }
     }
-
-    ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
-    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
-    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
-    ImGui_ImplGlfwGL3_Init(window, true);
-
-    // Setup style
-    ImGui::StyleColorsDark();
 }
 
 void MainGui::eventHandle()
@@ -85,5 +91,5 @@ void MainGui::clean()
     ImGui_ImplGlfwGL3_Shutdown();
     ImGui::DestroyContext();
     glfwTerminate();
-    std::cout << "Quiting sdl" << std::endl;
+    std::cout << "Quitting Native Tile Map Generator!" << std::endl;
 }

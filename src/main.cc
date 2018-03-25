@@ -9,13 +9,6 @@ int main()
     mg = new MainGui();
 
     mg->init("Native Tile Map Generator", 1280, 720);
-    while(mg->isRunning())
-    {
-        mg->render();
-        mg->update();
-        mg->eventHandle();
-    }
-
     mg->clean();
     return 0;
 }

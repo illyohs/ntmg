@@ -13,9 +13,9 @@ GuiWorkspace::GuiWorkspace()
 
 void GuiWorkspace::draw()
 {
-    ImGui::Text("Project name");
-    char text[128] = "example name..";
-    ImGui::InputText("##Project Name", text, IM_ARRAYSIZE(text));
+    ImGui::Text("Project");
+    char text[128] = "some project name....";
+    ImGui::InputText("Project Name", text, IM_ARRAYSIZE(text));
 
     int row = 80;
     int col = 80;
