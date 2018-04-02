@@ -15,9 +15,10 @@ srcs = [
     'src/workspace/tile.cc',
 
     'src/gui/imgui_impl_glfw_gl3.cc',
-    'src/gui/mainwindow.cc',
 
+    'src/gui/mainwindow.cc',
     'src/gui/guiworkspace.cc',
+    'src/gui/guitilewindow.cc',
 
     'imgui/imgui_draw.cpp',
     'imgui/imgui.cpp'
